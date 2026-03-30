@@ -1,4 +1,5 @@
 pandas
 numpy
 setuptools
+kagglehub
 -e .
