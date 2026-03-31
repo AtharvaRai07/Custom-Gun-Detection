@@ -1,0 +1,33 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 663bbdea5079146fc4f6d7f92b18308a
+      size: 2553
+    outs:
+    - path: artifacts/raw
+      hash: md5
+      md5: adfb9f01a07ced01f71d76b2cc3d7908.dir
+      size: 2442191
+      nfiles: 666
+  model_training:
+    cmd: python src/model_training.py
+    deps:
+    - path: artifacts/raw
+      hash: md5
+      md5: adfb9f01a07ced01f71d76b2cc3d7908.dir
+      size: 2442191
+      nfiles: 666
+    - path: src/model_training.py
+      hash: md5
+      md5: 0b30501d5cca07c3c007e3770158b865
+      size: 4884
+    outs:
+    - path: artifacts/model
+      hash: md5
+      md5: b6909b713dfc1929f34f2cbf4c1096a1.dir
+      size: 165731393
+      nfiles: 1

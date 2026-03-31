@@ -5,5 +5,6 @@ kagglehub
 torch
 torchvision
 opencv-python-headless
-tensorboard
+dvc
+protobuf==3.20.0
 # -e .

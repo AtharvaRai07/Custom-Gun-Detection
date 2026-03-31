@@ -5,9 +5,6 @@ from pathlib import Path
 from torch.utils.data import DataLoader, random_split
 from torch import optim
 
-from torch.utils.tensorboard import SummaryWriter
-import time
-
 from src.data_processing import DataProcessing
 from src.model_artitechture import ModelArchitecture
 from config.paths_config import *
@@ -26,13 +23,6 @@ class ModelTraining:
         self.device = device
 
         os.makedirs(MODEL_DIR, exist_ok=True)
-
-        ### TensorBoard
-        timestamp = time.strftime("%Y%m%d-%H%M%S")
-        self.log_dir = str(LOG_DIR / timestamp)
-        os.makedirs(self.log_dir, exist_ok=True)
-
-        self.writer = SummaryWriter(log_dir=self.log_dir)
 
         try:
              logging.info("Starting ModelTraining...")
@@ -97,16 +87,11 @@ class ModelTraining:
                         if total_loss == 0:
                             logging.warning(f"Total loss is zero at epoch {epoch}, batch {i}. Check individual losses: {losses}")
 
-                        self.writer.add_scalar("Loss/Train", total_loss.item(), epoch * len(train_loader) + i)
-
                     else:
                         total_loss = losses[0]
-                        self.writer.add_scalar("Loss/Train", total_loss.item(), epoch * len(train_loader) + i)
 
                     total_loss.backward()
                     self.optimizer.step()
-
-            self.writer.flush()
 
             self.model.eval()
             with torch.no_grad():
@@ -122,13 +107,9 @@ class ModelTraining:
                     else:
                         val_loss = losses
 
-                    if isinstance(val_loss, torch.Tensor):
-                        self.writer.add_scalar("Loss/Validation", val_loss.item(), epoch * len(val_loader) + i)
-
                     logging.info(f"Validation Loss: {val_loss}")
                     logging.info(f"Validation Loss Type: {type(val_loss)}")
 
-            self.writer.flush()
             torch.save(self.model.state_dict(), MODEL_SAVE_PATH)
 
             logging.info(f"Model saved successfully at {MODEL_SAVE_PATH}")
