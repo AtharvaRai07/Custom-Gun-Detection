@@ -7,4 +7,5 @@ torchvision
 opencv-python-headless
 dvc
 protobuf==3.20.0
+dvc-gs
 # -e .
