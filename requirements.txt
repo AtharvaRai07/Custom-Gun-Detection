@@ -2,4 +2,6 @@ pandas
 numpy
 setuptools
 kagglehub
--e .
+torch
+opencv-python-headless
+# -e .

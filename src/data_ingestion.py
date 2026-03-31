@@ -4,7 +4,7 @@ import kagglehub
 import shutil
 from src.logger import logging
 from src.exception import CustomException
-from config.data_ingestion_config import *
+from config.paths import *
 import zipfile
 
 class DataIngestion:
