@@ -6,6 +6,9 @@ torch
 torchvision
 opencv-python-headless
 dvc
-protobuf==3.20.0
 dvc-gs
+fastapi[all]
+uvicorn
+Pillow
+pydantic<2
 # -e .

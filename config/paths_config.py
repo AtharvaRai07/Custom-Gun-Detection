@@ -9,7 +9,7 @@ LABELS_DIR = Path("artifacts/raw/Labels")
 
 ######################################## MODEL TRAINING PATHS ########################################
 MODEL_DIR = Path("artifacts/model")
-MODEL_SAVE_PATH = MODEL_DIR / "fasterrcnn_resnet50_fpn.pth"
+MODEL_SAVE_PATH = MODEL_DIR / "guns_detector.pth"
 
 ######################################## LOGGING PATHS
 LOG_DIR = Path("tensorboard_logs")
