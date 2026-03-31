@@ -3,5 +3,7 @@ numpy
 setuptools
 kagglehub
 torch
+torchvision
 opencv-python-headless
+tensorboard
 # -e .

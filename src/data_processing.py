@@ -1,11 +1,12 @@
 import os
+import sys
 import cv2
 import torch
 import numpy as np
 from torch.utils.data import Dataset
 from src.logger import logging
 from src.exception import CustomException
-from config.paths import *
+from config.paths_config import *
 
 class DataProcessing(Dataset):
     def __init__(self, root, device:str = "cpu"):
@@ -60,7 +61,7 @@ class DataProcessing(Dataset):
 
         except Exception as e:
             logging.error(f"Error loading data for index {idx}: {e}")
-            raise CustomException(e)
+            raise CustomException(e, sys)
 
     def __len__(self):
         return len(self.img_name)
